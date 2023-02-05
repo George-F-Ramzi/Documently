@@ -1,19 +1,18 @@
-import { FabricJSCanvas, useFabricJSEditor } from "fabricjs-react";
 import { useEffect } from "react";
+import { Text } from "./Components/elemnts";
 
 function App() {
-  const { editor, onReady } = useFabricJSEditor();
-
   useEffect(() => {}, []);
-
-  const onAddCircle = () => {
-    editor?.addCircle();
-  };
 
   return (
     <div className="App">
-      <button onClick={onAddCircle}>Add circle</button>
-      <FabricJSCanvas className="sample-canvas" onReady={onReady} />
+      <button
+        onClick={() => {
+          document.getElementById("root")?.appendChild(Text());
+        }}
+      >
+        Text
+      </button>
     </div>
   );
 }
