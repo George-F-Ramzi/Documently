@@ -1,20 +1,8 @@
 import { useEffect } from "react";
-import { Text } from "./Components/elemnts";
+import Book from "./pages/book";
 
 function App() {
-  useEffect(() => {}, []);
-
-  return (
-    <div className="App">
-      <button
-        onClick={() => {
-          document.getElementById("root")?.appendChild(Text());
-        }}
-      >
-        Text
-      </button>
-    </div>
-  );
+  return <Book />;
 }
 
 export default App;
