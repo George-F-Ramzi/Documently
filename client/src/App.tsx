@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import Book from "./pages/book";
 
 function App() {
