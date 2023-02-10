@@ -5,10 +5,11 @@ import {
   RiAlignRight,
   RiLinkM,
 } from "react-icons/ri";
+import { HeadingOne, HeadingThree, HeadingTwo } from "./Actions";
 
 function NavBar() {
   return (
-    <div className="h-48 bg-white px-8 pt-8 w-full">
+    <div className="h-48 bg-white px-8 pt-8 w-full shadow-md z-10	">
       <div className="flex justify-between mb-4">
         <RiArrowLeftLine className="hover:cursor-pointer" size={"24px"} />
         <h5 className="text-xl font-bold pl-36">Hello World</h5>
@@ -23,13 +24,31 @@ function NavBar() {
       </div>
       <hr></hr>
       <div className="flex justify-center mt-6 mb-4  ">
-        <h6 className=" text-base font-meduim hover:cursor-pointer mr-4">
+        <h6
+          onClick={() => {
+            const page = document.getElementById("content-1");
+            page?.appendChild(HeadingOne());
+          }}
+          className=" text-base font-meduim hover:cursor-pointer mr-4"
+        >
           Heading 1
         </h6>
-        <h6 className=" text-base font-meduim hover:cursor-pointer mr-4">
+        <h6
+          onClick={() => {
+            const page = document.getElementById("content-1");
+            page?.appendChild(HeadingTwo());
+          }}
+          className=" text-base font-meduim hover:cursor-pointer mr-4"
+        >
           Heading 2
         </h6>
-        <h6 className=" text-base font-meduim hover:cursor-pointer mr-4">
+        <h6
+          onClick={() => {
+            const page = document.getElementById("content-1");
+            page?.appendChild(HeadingThree());
+          }}
+          className=" text-base font-meduim hover:cursor-pointer mr-4"
+        >
           Heading 3
         </h6>
         <h6 className=" text-base font-meduim hover:cursor-pointer mr-4">
