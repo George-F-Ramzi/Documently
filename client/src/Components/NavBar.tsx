@@ -1,18 +1,31 @@
+import { useState } from "react";
 import {
-  RiArrowLeftLine,
   RiAlignCenter,
   RiAlignLeft,
   RiAlignRight,
   RiLinkM,
+  RiBold,
+  RiArrowDropDownFill,
+  RiUnderline,
+  RiItalic,
+  RiFontColor,
+  RiImageLine,
+  RiListCheck,
+  RiListOrdered,
+  RiSubtractLine,
+  RiTable2,
+  RiAlignJustify,
 } from "react-icons/ri";
-import { HeadingOne, HeadingThree, HeadingTwo } from "./Actions";
 
 function NavBar() {
+  const [font, setFont] = useState<string>("Roboto");
+  const [titles, setTitles] = useState<string>("text");
+  const [size, setSize] = useState<number>(12);
+  const [color, setColor] = useState<string>("red");
   return (
-    <div className="h-48 bg-white px-8 pt-8 w-full shadow-md z-10	">
-      <div className="flex justify-between mb-4">
-        <RiArrowLeftLine className="hover:cursor-pointer" size={"24px"} />
-        <h5 className="text-xl font-bold pl-36">Hello World</h5>
+    <div className="h-48 bg-white px-8 pt-8 w-full shadow-md z-10 p-10	">
+      <div className="flex h-fit items-center  mb-4">
+        <h5 className="text-xl grow font-bold  ">Hello World</h5>
         <div className="header__btns">
           <button className="bg-yellow-400  hover:bg-yellow-200 font-bold py-2 px-4 rounded ">
             Save
@@ -23,45 +36,84 @@ function NavBar() {
         </div>
       </div>
       <hr></hr>
-      <div className="flex justify-center mt-6 mb-4  ">
-        <h6
-          onClick={() => {
-            const page = document.getElementById("content-1");
-            page?.appendChild(HeadingOne());
-          }}
-          className=" text-base font-meduim hover:cursor-pointer mr-4"
-        >
-          Heading 1
-        </h6>
-        <h6
-          onClick={() => {
-            const page = document.getElementById("content-1");
-            page?.appendChild(HeadingTwo());
-          }}
-          className=" text-base font-meduim hover:cursor-pointer mr-4"
-        >
-          Heading 2
-        </h6>
-        <h6
-          onClick={() => {
-            const page = document.getElementById("content-1");
-            page?.appendChild(HeadingThree());
-          }}
-          className=" text-base font-meduim hover:cursor-pointer mr-4"
-        >
-          Heading 3
-        </h6>
-        <h6 className=" text-base font-meduim hover:cursor-pointer mr-4">
-          Text
-        </h6>
-        <h6 className=" text-base font-meduim hover:cursor-pointer mr-4">B</h6>
-        <h6 className=" text-base font-meduim hover:cursor-pointer mr-4">U</h6>
-        <h6 className=" text-base font-meduim hover:cursor-pointer mr-4">I</h6>
-        <input className="w-6 mr-4" type="color" />
-        <RiLinkM className="hover:cursor-pointer mr-4" size={"24px"} />
-        <RiAlignLeft className="hover:cursor-pointer mr-4" size={"24px"} />
-        <RiAlignCenter className="hover:cursor-pointer mr-4" size={"24px"} />
-        <RiAlignRight className="hover:cursor-pointer " size={"24px"} />
+      <div className="flex items-center  mt-6 mb-4 ">
+        <div className="h-[48px] w-[180px] border border-black relative">
+          <select
+            onChange={(e) => setFont(e.target.value)}
+            id="cars"
+            name="cars"
+            className="opacity-0 h-full w-full z-20"
+            defaultValue={"Roboto"}
+          >
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="fiat">Fiat</option>
+            <option value="audi">Audi</option>
+          </select>
+          <p className="absolute left-3 top-3">{font}</p>
+          <RiArrowDropDownFill
+            size={"40px"}
+            className="absolute right-2 top-1"
+          />
+        </div>
+        <div className="h-[48px] w-[180px] border border-black relative ml-[24px]">
+          <select
+            onChange={(e) => setTitles(e.target.value)}
+            id="cars"
+            name="cars"
+            className="opacity-0 h-full w-full z-20"
+            defaultValue={"Roboto"}
+          >
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="fiat">Fiat</option>
+            <option value="audi">Audi</option>
+          </select>
+          <p className="absolute left-3 top-3">{titles}</p>
+          <RiArrowDropDownFill
+            size={"40px"}
+            className="absolute right-2 top-1"
+          />
+        </div>
+        <div className="h-[48px] w-[180px] border border-black relative ml-[24px]">
+          <select
+            onChange={(e) => setSize(Number(e.target.value))}
+            id="cars"
+            name="cars"
+            className="opacity-0 h-full w-full z-20"
+            defaultValue={"Roboto"}
+          >
+            <option value="12">12</option>
+            <option value="16">16</option>
+            <option value="18">18</option>
+            <option value="20">20</option>
+          </select>
+          <p className="absolute left-3 top-3">{size}</p>
+          <RiArrowDropDownFill
+            size={"40px"}
+            className="absolute right-2 top-1"
+          />
+        </div>
+        <div className="flex ml-[28px] items-center ">
+          <RiBold size={"28px"} className="cursor-pointer" />
+          <RiUnderline size={"28px"} className="ml-[24px] cursor-pointer" />
+          <RiItalic size={"28px"} className="ml-[24px] cursor-pointer" />
+          <RiFontColor
+            size={"28px"}
+            className="ml-[24px] cursor-pointer"
+            color={color}
+          />
+          <RiImageLine size={"28px"} className="ml-[24px] cursor-pointer" />
+          <RiLinkM size={"28px"} className="ml-[24px] cursor-pointer" />
+          <RiListCheck size={"28px"} className="ml-[24px] cursor-pointer" />
+          <RiListOrdered size={"28px"} className="ml-[24px] cursor-pointer" />
+          <RiSubtractLine size={"28px"} className="ml-[24px] cursor-pointer" />
+          <RiTable2 size={"28px"} className="ml-[24px] cursor-pointer" />
+          <RiAlignLeft size={"28px"} className="ml-[24px] cursor-pointer" />
+          <RiAlignCenter size={"28px"} className="ml-[24px] cursor-pointer" />
+          <RiAlignRight size={"28px"} className="ml-[24px] cursor-pointer" />
+          <RiAlignJustify size={"28px"} className="ml-[24px] cursor-pointer" />
+        </div>
       </div>
     </div>
   );
