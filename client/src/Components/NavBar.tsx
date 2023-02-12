@@ -19,7 +19,6 @@ import {
 
 function NavBar() {
   const [font, setFont] = useState<string>("Roboto");
-  const [titles, setTitles] = useState<string>("text");
   const [size, setSize] = useState<number>(12);
   const [color, setColor] = useState<string>("red");
   return (
@@ -40,8 +39,6 @@ function NavBar() {
         <div className="h-[48px] w-[180px] border border-black relative">
           <select
             onChange={(e) => setFont(e.target.value)}
-            id="cars"
-            name="cars"
             className="opacity-0 h-full w-full z-20"
             defaultValue={"Roboto"}
           >
@@ -50,69 +47,58 @@ function NavBar() {
             <option value="fiat">Fiat</option>
             <option value="audi">Audi</option>
           </select>
-          <p className="absolute left-3 top-3">{font}</p>
+          <p className="absolute left-3 top-3  -z-10">{font}</p>
           <RiArrowDropDownFill
             size={"40px"}
-            className="absolute right-2 top-1"
-          />
-        </div>
-        <div className="h-[48px] w-[180px] border border-black relative ml-[24px]">
-          <select
-            onChange={(e) => setTitles(e.target.value)}
-            id="cars"
-            name="cars"
-            className="opacity-0 h-full w-full z-20"
-            defaultValue={"Roboto"}
-          >
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="fiat">Fiat</option>
-            <option value="audi">Audi</option>
-          </select>
-          <p className="absolute left-3 top-3">{titles}</p>
-          <RiArrowDropDownFill
-            size={"40px"}
-            className="absolute right-2 top-1"
+            className="absolute right-2 top-1 -z-10"
           />
         </div>
         <div className="h-[48px] w-[180px] border border-black relative ml-[24px]">
           <select
             onChange={(e) => setSize(Number(e.target.value))}
-            id="cars"
-            name="cars"
             className="opacity-0 h-full w-full z-20"
-            defaultValue={"Roboto"}
+            defaultValue={"8"}
           >
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
             <option value="12">12</option>
-            <option value="16">16</option>
+            <option value="14">14</option>
             <option value="18">18</option>
-            <option value="20">20</option>
+            <option value="24">24</option>
+            <option value="30">30</option>
+            <option value="36">36</option>
+            <option value="48">48</option>
+            <option value="60">60</option>
+            <option value="72">72</option>
+            <option value="96">96</option>
           </select>
-          <p className="absolute left-3 top-3">{size}</p>
+          <p className="absolute left-3 top-3 -z-10">{size}</p>
           <RiArrowDropDownFill
             size={"40px"}
-            className="absolute right-2 top-1"
+            className="absolute right-2 top-1  -z-10"
           />
         </div>
-        <div className="flex ml-[28px] items-center ">
-          <RiBold size={"28px"} className="cursor-pointer" />
-          <RiUnderline size={"28px"} className="ml-[24px] cursor-pointer" />
-          <RiItalic size={"28px"} className="ml-[24px] cursor-pointer" />
+        <div className="flex ml-[24px] items-center ">
+          <RiBold size={"24px"} className="cursor-pointer" />
+          <RiUnderline size={"24px"} className="ml-[24px] cursor-pointer" />
+          <RiItalic size={"24px"} className="ml-[24px] cursor-pointer" />
           <RiFontColor
-            size={"28px"}
+            size={"24px"}
             className="ml-[24px] cursor-pointer"
             color={color}
           />
-          <RiImageLine size={"28px"} className="ml-[24px] cursor-pointer" />
-          <RiLinkM size={"28px"} className="ml-[24px] cursor-pointer" />
-          <RiListCheck size={"28px"} className="ml-[24px] cursor-pointer" />
-          <RiListOrdered size={"28px"} className="ml-[24px] cursor-pointer" />
-          <RiSubtractLine size={"28px"} className="ml-[24px] cursor-pointer" />
-          <RiTable2 size={"28px"} className="ml-[24px] cursor-pointer" />
-          <RiAlignLeft size={"28px"} className="ml-[24px] cursor-pointer" />
-          <RiAlignCenter size={"28px"} className="ml-[24px] cursor-pointer" />
-          <RiAlignRight size={"28px"} className="ml-[24px] cursor-pointer" />
-          <RiAlignJustify size={"28px"} className="ml-[24px] cursor-pointer" />
+          <RiImageLine size={"24px"} className="ml-[24px] cursor-pointer" />
+          <RiLinkM size={"24px"} className="ml-[24px] cursor-pointer" />
+          <RiListCheck size={"24px"} className="ml-[24px] cursor-pointer" />
+          <RiListOrdered size={"24px"} className="ml-[24px] cursor-pointer" />
+          <RiSubtractLine size={"24px"} className="ml-[24px] cursor-pointer" />
+          <RiTable2 size={"24px"} className="ml-[24px] cursor-pointer" />
+          <RiAlignLeft size={"24px"} className="ml-[24px] cursor-pointer" />
+          <RiAlignCenter size={"24px"} className="ml-[24px] cursor-pointer" />
+          <RiAlignRight size={"24px"} className="ml-[24px] cursor-pointer" />
+          <RiAlignJustify size={"24px"} className="ml-[24px] cursor-pointer" />
         </div>
       </div>
     </div>
