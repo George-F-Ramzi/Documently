@@ -16,6 +16,7 @@ import {
   RiTable2,
   RiAlignJustify,
 } from "react-icons/ri";
+import { boldCommand, UnderlineCommand } from "./Actions";
 
 function NavBar() {
   const [font, setFont] = useState<string>("Roboto");
@@ -81,8 +82,20 @@ function NavBar() {
           />
         </div>
         <div className="flex ml-[24px] items-center ">
-          <RiBold size={"24px"} className="cursor-pointer" />
-          <RiUnderline size={"24px"} className="ml-[24px] cursor-pointer" />
+          <RiBold
+            size={"24px"}
+            className="cursor-pointer"
+            onMouseDown={() => {
+              boldCommand(window.getSelection() as object);
+            }}
+          />
+          <RiUnderline
+            size={"24px"}
+            className="ml-[24px] cursor-pointer"
+            onMouseDown={() => {
+              UnderlineCommand(window.getSelection() as object);
+            }}
+          />
           <RiItalic size={"24px"} className="ml-[24px] cursor-pointer" />
           <RiFontColor
             size={"24px"}
