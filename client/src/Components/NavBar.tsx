@@ -8,7 +8,6 @@ import {
   RiArrowDropDownFill,
   RiUnderline,
   RiItalic,
-  RiFontColor,
   RiImageLine,
   RiListCheck,
   RiListOrdered,
@@ -16,12 +15,11 @@ import {
   RiTable2,
   RiAlignJustify,
 } from "react-icons/ri";
-import { boldCommand, UnderlineCommand } from "./Actions";
 
 function NavBar() {
   const [font, setFont] = useState<string>("Roboto");
   const [size, setSize] = useState<number>(12);
-  const [color, setColor] = useState<string>("red");
+
   return (
     <div className="h-48 bg-white px-8 pt-8 w-full shadow-md z-10 p-10	">
       <div className="flex h-fit items-center  mb-4">
@@ -86,21 +84,22 @@ function NavBar() {
             size={"24px"}
             className="cursor-pointer"
             onMouseDown={() => {
-              boldCommand(window.getSelection() as object);
+              bolding();
             }}
           />
           <RiUnderline
             size={"24px"}
             className="ml-[24px] cursor-pointer"
             onMouseDown={() => {
-              UnderlineCommand(window.getSelection() as object);
+              underline();
             }}
           />
-          <RiItalic size={"24px"} className="ml-[24px] cursor-pointer" />
-          <RiFontColor
+          <RiItalic
             size={"24px"}
             className="ml-[24px] cursor-pointer"
-            color={color}
+            onMouseDown={() => {
+              italic();
+            }}
           />
           <RiImageLine size={"24px"} className="ml-[24px] cursor-pointer" />
           <RiLinkM size={"24px"} className="ml-[24px] cursor-pointer" />

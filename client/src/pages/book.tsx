@@ -1,11 +1,14 @@
 import { useEffect, FormEvent, useState } from "react";
 import { RiArrowDropDownFill } from "react-icons/ri";
-import { NewPage } from "../Components/Elements";
 import NavBar from "../Components/NavBar";
+import { ChromePicker } from "@hello-pangea/color-picker";
+
+export let selectObj: object;
 
 function Book() {
   const [scale, setScale] = useState<string>("scale-x-100");
   const [pages, setPages] = useState<number>(1);
+  const [selectedText, setSelectedText] = useState<object>();
 
   const Overflow = (e: FormEvent<HTMLDivElement>) => {
     GetPagesNumber();
@@ -30,11 +33,34 @@ function Book() {
     setPages(num);
   }
 
+  const SelectedTextObsover = () => {
+    interface So {
+      extentOffset?: number;
+      type?: string;
+      length?: number;
+    }
+
+    let obj: So = window.getSelection() as object;
+
+    if (
+      obj.toString().length > 0 &&
+      obj.extentOffset! > 0 &&
+      obj.type === "Range"
+    ) {
+      setSelectedText(obj);
+    }
+  };
+
+  useEffect(() => {
+    selectObj = selectedText!;
+  }, [selectedText]);
+
   return (
     <div className="h-screen flex flex-col relative">
       <NavBar />
       <div className="grow overflow-y-scroll bg-slate-200 w-full flex-col">
         <div
+          onMouseUp={() => SelectedTextObsover()}
           onInput={(e) => {
             Overflow(e);
           }}
