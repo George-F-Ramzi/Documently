@@ -1,47 +1,50 @@
 import { selectObj as selectedText } from "../pages/book";
 
-const boldCommand = () => {
+export function boldCommand() {
   if (selectedText) {
     const el = document.createElement("strong") as HTMLElement;
     const range = selectedText.getRangeAt(0);
     el.appendChild(range.extractContents());
-    if (el.innerHTML.toString().length != 0) {
+    if ((el.innerHTML.toString().length as number) != 0) {
       range.insertNode(el);
     }
   }
-};
+}
 
-const ItalicCommand = () => {
+export function ItalicCommand() {
   if (selectedText) {
     const el = document.createElement("em") as HTMLElement;
     const range = selectedText.getRangeAt(0);
     el.appendChild(range.extractContents());
-    if (el.innerHTML.toString().length != 0) {
+    if ((el.innerHTML.toString().length as number) != 0) {
       range.insertNode(el);
     }
   }
-};
+}
 
-const UnderlineCommand = () => {
+export function UnderlineCommand() {
   if (selectedText) {
-    const el = document.createElement("span") as HTMLElement;
-    el.style.textDecoration = "underline";
+    const el = document.createElement("u") as HTMLElement;
     const range = selectedText.getRangeAt(0);
     el.appendChild(range.extractContents());
-    if (el.innerHTML.toString().length != 0) {
+    if ((el.innerHTML.toString().length as number) != 0) {
       range.insertNode(el);
     }
   }
-};
+}
 
-const ColorCommand = (color: string) => {
+export function ColorCommand(color: string) {
   if (selectedText) {
-    const el = document.createElement("span") as HTMLElement;
-    el.style.color = color;
-    const range = selectedText.getRangeAt(0);
-    el.appendChild(range.extractContents());
-    if (el.innerHTML.toString().length != 0) {
-      range.insertNode(el);
+    let range = selectedText.getRangeAt(0);
+    let content = range.extractContents().textContent.split("") as string[];
+    content.reverse();
+    if (content.length > 0) {
+      content.forEach((e) => {
+        let char: HTMLElement = document.createElement("span");
+        char.innerHTML = e;
+        char.style.color = color;
+        range.insertNode(char);
+      });
     }
   }
-};
+}

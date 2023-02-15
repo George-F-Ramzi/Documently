@@ -1,13 +1,15 @@
 import { useEffect, FormEvent, useState } from "react";
 import { RiArrowDropDownFill } from "react-icons/ri";
 import NavBar from "../Components/NavBar";
-import { ChromePicker } from "@hello-pangea/color-picker";
+import { HexColorPicker } from "react-colorful";
+import { ColorCommand } from "../Components/Actions";
 
 export let selectObj: object;
 
 function Book() {
   const [scale, setScale] = useState<string>("scale-x-100");
   const [pages, setPages] = useState<number>(1);
+  const [picker, setPicker] = useState<boolean>(false);
   const [selectedText, setSelectedText] = useState<object>();
 
   const Overflow = (e: FormEvent<HTMLDivElement>) => {
@@ -35,20 +37,16 @@ function Book() {
 
   const SelectedTextObsover = () => {
     interface So {
-      extentOffset?: number;
       type?: string;
       length?: number;
     }
 
     let obj: So = window.getSelection() as object;
 
-    if (
-      obj.toString().length > 0 &&
-      obj.extentOffset! > 0 &&
-      obj.type === "Range"
-    ) {
+    if (obj.toString().length > 0 && obj.type === "Range") {
       setSelectedText(obj);
-    }
+      setPicker(true);
+    } else setPicker(false);
   };
 
   useEffect(() => {
@@ -96,6 +94,18 @@ function Book() {
           className="absolute right-2 top-[2px] -z-10"
         />
       </div>
+
+      {picker ? (
+        <div className="absolute right-[32px] bottom-[100px] shadow-md ">
+          <HexColorPicker
+            onChange={(e) => {
+              ColorCommand(e);
+            }}
+          />
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
