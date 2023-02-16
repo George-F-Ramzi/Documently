@@ -40,7 +40,9 @@ function Book() {
     if (collisions.overflowBottom >= -96) {
       page.style.height = "100%";
       if (pagesNumber === currentPageNumber) {
+        page.blur();
         contentArea.appendChild(NewPage((pagesNumber = pagesNumber + 1)));
+        document.getElementById(`content-${pagesNumber++}`)?.focus();
       }
     } else page.style.height = "auto";
   };
