@@ -15,7 +15,12 @@ import {
   RiTable2,
   RiAlignJustify,
 } from "react-icons/ri";
-import { boldCommand, ItalicCommand, UnderlineCommand } from "./Actions";
+import {
+  boldCommand,
+  ItalicCommand,
+  SizeCommand,
+  UnderlineCommand,
+} from "./Actions";
 
 function NavBar() {
   const [font, setFont] = useState<string>("Roboto");
@@ -55,7 +60,10 @@ function NavBar() {
         </div>
         <div className="h-[48px] w-[180px] border border-black relative ml-[24px]">
           <select
-            onChange={(e) => setSize(Number(e.target.value))}
+            onChange={(e) => {
+              setSize(Number(e.target.value));
+              SizeCommand(Number(e.target.value));
+            }}
             className="opacity-0 h-full w-full z-20"
             defaultValue={"8"}
           >

@@ -2,38 +2,15 @@ import { useEffect, FormEvent, useState } from "react";
 import { RiArrowDropDownFill } from "react-icons/ri";
 import NavBar from "../Components/NavBar";
 import { HexColorPicker } from "react-colorful";
-import { ColorCommand } from "../Components/Actions";
+import { ColorCommand, NewPage } from "../Components/Actions";
+import detectElementOverflow from "detect-element-overflow";
 
 export let selectObj: object;
 
 function Book() {
   const [scale, setScale] = useState<string>("scale-x-100");
-  const [pages, setPages] = useState<number>(1);
   const [picker, setPicker] = useState<boolean>(false);
   const [selectedText, setSelectedText] = useState<object>();
-
-  const Overflow = (e: FormEvent<HTMLDivElement>) => {
-    GetPagesNumber();
-    let id: string = e.target.id;
-    let pageNum = Number(id.slice(5));
-    let page = document.getElementById(id) as HTMLElement;
-    let hegiht: number = page.getBoundingClientRect().height;
-    if (hegiht >= 1080) {
-      page.style.height = "1080px";
-    } else {
-      page.style.height = "auto";
-    }
-  };
-
-  useEffect(() => {
-    GetPagesNumber();
-  }, []);
-
-  function GetPagesNumber() {
-    let num = document.getElementById("content-area")
-      ?.childElementCount as number;
-    setPages(num);
-  }
 
   const SelectedTextObsover = () => {
     interface So {
@@ -53,6 +30,21 @@ function Book() {
     selectObj = selectedText!;
   }, [selectedText]);
 
+  const Overflow = (e: FormEvent<HTMLDivElement>) => {
+    let page = e.target as HTMLElement;
+    let parentElement = e.target.parentElement as HTMLElement;
+    let contentArea = document.getElementById("content-area") as HTMLElement;
+    let pagesNumber = contentArea?.childElementCount as number;
+    let currentPageNumber: number = Number(parentElement.id.slice(5));
+    let collisions = detectElementOverflow(page, parentElement);
+    if (collisions.overflowBottom >= -96) {
+      page.style.height = "100%";
+      if (pagesNumber === currentPageNumber) {
+        contentArea.appendChild(NewPage((pagesNumber = pagesNumber + 1)));
+      }
+    } else page.style.height = "auto";
+  };
+
   return (
     <div className="h-screen flex flex-col relative">
       <NavBar />
@@ -65,12 +57,15 @@ function Book() {
           id="content-area"
           className={`mt-10 ${scale} `}
         >
-          <div className="p-12 rounded-sm shadow-md	bg-white h-[1200px] w-[800px] m-auto mb-10">
-            <p
-              id="page-1"
+          <div
+            id="page-1"
+            className="p-[1in] rounded-sm shadow-md	bg-white h-[11in] w-[8in] m-auto mb-10"
+          >
+            <div
+              id="content-1"
               contentEditable={true}
               className="outline-none overflow-hidden"
-            ></p>
+            ></div>
           </div>
         </div>
       </div>
