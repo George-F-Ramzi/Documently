@@ -111,7 +111,13 @@ function NavBar() {
             }}
           />
           <RiImageLine size={"24px"} className="ml-[24px] cursor-pointer" />
-          <RiLinkM size={"24px"} className="ml-[24px] cursor-pointer" />
+          <RiLinkM
+            size={"24px"}
+            className="ml-[24px] cursor-pointer"
+            onMouseDown={() => {
+              ItalicCommand();
+            }}
+          />
           <RiListCheck size={"24px"} className="ml-[24px] cursor-pointer" />
           <RiListOrdered size={"24px"} className="ml-[24px] cursor-pointer" />
           <RiSubtractLine size={"24px"} className="ml-[24px] cursor-pointer" />

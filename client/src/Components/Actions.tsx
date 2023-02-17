@@ -1,4 +1,4 @@
-import { selectObj as selectedText } from "../pages/book";
+import { selectObj as selectedText } from "../pages/Project";
 
 export function boldCommand() {
   if (selectedText) {
@@ -35,16 +35,35 @@ export function UnderlineCommand() {
 
 export function ColorCommand(color: string) {
   if (selectedText) {
-    let range = selectedText.getRangeAt(0);
-    let content = range.extractContents().textContent.split("") as string[];
-    content.reverse();
-    if (content.length > 0) {
-      for (let index: number = 0; index < content.length; index++) {
-        let char: HTMLElement = document.createElement("span");
-        char.innerHTML = content[index];
-        char.style.color = color;
-        range.insertNode(char);
-      }
+    const el = document.createElement("span") as HTMLElement;
+    const range = selectedText.getRangeAt(0);
+    el.style.color = color;
+    el.appendChild(range.extractContents());
+    if ((el.innerHTML.toString().length as number) != 0) {
+      range.insertNode(el);
+    }
+  }
+}
+
+export function SizeCommand(size: number) {
+  if (selectedText) {
+    const el = document.createElement("span") as HTMLElement;
+    const range = selectedText.getRangeAt(0);
+    el.style.fontSize = `${size}px`;
+    el.appendChild(range.extractContents());
+    if ((el.innerHTML.toString().length as number) != 0) {
+      range.insertNode(el);
+    }
+  }
+}
+
+export function LinkCommand(size: number) {
+  if (selectedText) {
+    const el = document.createElement("a") as HTMLElement;
+    const range = selectedText.getRangeAt(0);
+    el.appendChild(range.extractContents());
+    if ((el.innerHTML.toString().length as number) != 0) {
+      range.insertNode(el);
     }
   }
 }
@@ -60,31 +79,4 @@ export function NewPage(id: number): HTMLElement {
   contentDiv.setAttribute("contentEditable", "true");
   mainDiv.appendChild(contentDiv);
   return mainDiv;
-}
-
-export function SizeCommand(size: number) {
-  if (selectedText) {
-    let range = selectedText.getRangeAt(0);
-    let content = range.extractContents().textContent.split("") as string[];
-    content.reverse();
-    if (content.length > 0) {
-      for (let index: number = 0; index < content.length; index++) {
-        let char: HTMLElement = document.createElement("span");
-        char.innerHTML = content[index];
-        char.style.fontSize = `${size}px`;
-        range.insertNode(char);
-      }
-    }
-  }
-}
-
-export function LinkCommand(size: number) {
-  if (selectedText) {
-    const el = document.createElement("a") as HTMLElement;
-    const range = selectedText.getRangeAt(0);
-    el.appendChild(range.extractContents());
-    if ((el.innerHTML.toString().length as number) != 0) {
-      range.insertNode(el);
-    }
-  }
 }

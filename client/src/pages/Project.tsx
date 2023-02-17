@@ -7,8 +7,8 @@ import detectElementOverflow from "detect-element-overflow";
 
 export let selectObj: object;
 
-function Book() {
-  const [scale, setScale] = useState<string>("scale-x-100");
+function Project() {
+  const [scale, setScale] = useState<string>("scale-100");
   const [picker, setPicker] = useState<boolean>(false);
   const [selectedText, setSelectedText] = useState<object>();
 
@@ -26,10 +26,6 @@ function Book() {
     } else setPicker(false);
   };
 
-  useEffect(() => {
-    selectObj = selectedText!;
-  }, [selectedText]);
-
   const Overflow = (e: FormEvent<HTMLDivElement>) => {
     let page = e.target as HTMLElement;
     let parentElement = e.target.parentElement as HTMLElement;
@@ -46,6 +42,14 @@ function Book() {
       }
     } else page.style.height = "auto";
   };
+
+  useEffect(() => {
+    document.getElementById(`content-1`)!.focus;
+  }, []);
+
+  useEffect(() => {
+    selectObj = selectedText!;
+  }, [selectedText]);
 
   return (
     <div className="h-screen flex flex-col relative">
@@ -79,13 +83,13 @@ function Book() {
           className="opacity-0 h-full w-full z-20"
           defaultValue={scale}
         >
-          <option value="scale-x-75">75%</option>
-          <option value="scale-x-90">90%</option>
-          <option value="scale-x-100">100%</option>
-          <option value="scale-x-125">125%</option>
-          <option value="scale-x-150">150%</option>
+          <option value="scale-75">75%</option>
+          <option value="scale-90">90%</option>
+          <option value="scale-100">100%</option>
+          <option value="scale-125">125%</option>
+          <option value="scale-150">150%</option>
         </select>
-        <p className="absolute left-3 top-2 -z-10">{scale.slice(8)}</p>
+        <p className="absolute left-3 top-2 -z-10">{scale.slice(6)}</p>
         <RiArrowDropDownFill
           size={"40px"}
           className="absolute right-2 top-[2px] -z-10"
@@ -107,4 +111,4 @@ function Book() {
   );
 }
 
-export default Book;
+export default Project;
