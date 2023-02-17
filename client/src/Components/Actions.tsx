@@ -39,8 +39,14 @@ export function ColorCommand(color: string) {
     const range = selectedText.getRangeAt(0);
     el.style.color = color;
     el.appendChild(range.extractContents());
+    let childs = el.getElementsByTagName(
+      "span"
+    ) as HTMLCollectionOf<HTMLSpanElement>;
     if ((el.innerHTML.toString().length as number) != 0) {
       range.insertNode(el);
+      for (let index = 0; index < childs.length; index++) {
+        childs[index].style.color = color;
+      }
     }
   }
 }
@@ -51,8 +57,14 @@ export function SizeCommand(size: number) {
     const range = selectedText.getRangeAt(0);
     el.style.fontSize = `${size}px`;
     el.appendChild(range.extractContents());
+    let childs = el.getElementsByTagName(
+      "span"
+    ) as HTMLCollectionOf<HTMLSpanElement>;
     if ((el.innerHTML.toString().length as number) != 0) {
       range.insertNode(el);
+      for (let index = 0; index < childs.length; index++) {
+        childs[index].style.fontSize = `${size}px`;
+      }
     }
   }
 }
