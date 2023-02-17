@@ -12,7 +12,15 @@ function Project() {
   const [picker, setPicker] = useState<boolean>(false);
   const [selectedText, setSelectedText] = useState<object>();
 
-  const SelectedTextObsover = () => {
+  useEffect(() => {
+    document.getElementById(`content-1`)!.focus();
+  }, []);
+
+  useEffect(() => {
+    selectObj = selectedText!;
+  }, [selectedText]);
+
+  const SelectedTextObserver = () => {
     interface So {
       type?: string;
       length?: number;
@@ -43,20 +51,12 @@ function Project() {
     } else page.style.height = "auto";
   };
 
-  useEffect(() => {
-    document.getElementById(`content-1`)!.focus;
-  }, []);
-
-  useEffect(() => {
-    selectObj = selectedText!;
-  }, [selectedText]);
-
   return (
     <div className="h-screen flex flex-col relative">
       <NavBar />
       <div className="grow overflow-y-scroll bg-slate-200 w-full flex-col">
         <div
-          onMouseUp={() => SelectedTextObsover()}
+          onMouseUp={() => SelectedTextObserver()}
           onInput={(e) => {
             Overflow(e);
           }}
