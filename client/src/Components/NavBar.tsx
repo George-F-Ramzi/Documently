@@ -13,13 +13,11 @@ import {
   RiListOrdered,
   RiSubtractLine,
   RiTable2,
-  RiAlignJustify,
 } from "react-icons/ri";
 import {
   boldCommand,
   CenterAlignCommand,
   ItalicCommand,
-  JustifyAlignCommand,
   LeftAlignCommand,
   OrderdListCommand,
   RightAlignCommand,
@@ -194,13 +192,6 @@ function NavBar() {
           <RiAlignRight
             onMouseDown={() => {
               RightAlignCommand();
-            }}
-            size={"24px"}
-            className="ml-[24px] cursor-pointer"
-          />
-          <RiAlignJustify
-            onMouseDown={() => {
-              JustifyAlignCommand();
             }}
             size={"24px"}
             className="ml-[24px] cursor-pointer"

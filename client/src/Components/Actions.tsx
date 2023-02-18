@@ -146,18 +146,6 @@ export function LeftAlignCommand() {
   }
 }
 
-export function JustifyAlignCommand() {
-  if (selectedText) {
-    const el = document.createElement("div") as HTMLElement;
-    const range = selectedText.getRangeAt(0);
-    el.style.textAlign = "justify";
-    el.appendChild(range.extractContents());
-    if ((el.innerHTML.toString().length as number) != 0) {
-      range.insertNode(el);
-    }
-  }
-}
-
 export function NewPage(id: number): HTMLElement {
   let mainDiv = document.createElement("div") as HTMLElement;
   mainDiv.id = `page-${id}`;
