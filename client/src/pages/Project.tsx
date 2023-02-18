@@ -20,12 +20,12 @@ function Project() {
     selectObj = selectedText!;
   }, [selectedText]);
 
-  const SelectedTextObserver = () => {
-    interface So {
-      type?: string;
-      length?: number;
-    }
+  interface So {
+    type?: string;
+    length?: number;
+  }
 
+  const SelectedTextObserver = () => {
     let obj: So = window.getSelection() as object;
 
     if (obj.toString().length > 0 && obj.type === "Range") {

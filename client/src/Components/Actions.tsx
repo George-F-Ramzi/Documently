@@ -69,14 +69,16 @@ export function SizeCommand(size: number) {
   }
 }
 
-export function LinkCommand(size: number) {
+export function LinkCommand() {
   if (selectedText) {
     const el = document.createElement("a") as HTMLElement;
     const range = selectedText.getRangeAt(0);
     el.appendChild(range.extractContents());
+    el.id = `${Math.random()}`;
     if ((el.innerHTML.toString().length as number) != 0) {
       range.insertNode(el);
     }
+    return el.id as string;
   }
 }
 
@@ -143,6 +145,16 @@ export function LeftAlignCommand() {
     if ((el.innerHTML.toString().length as number) != 0) {
       range.insertNode(el);
     }
+  }
+}
+
+export function LineSeparatorCommand() {
+  if (window.getSelection) {
+    const el = document.createElement("hr") as HTMLElement;
+    const sel = window.getSelection();
+    const range = sel?.getRangeAt(0);
+    el.style.border = "0.5px solid black";
+    range!.insertNode(el);
   }
 }
 
