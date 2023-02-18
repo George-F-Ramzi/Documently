@@ -1,7 +1,7 @@
-import Book from "./pages/Project";
+import Project from "./pages/Project";
 
 function App() {
-  return <Book />;
+  return <Project />;
 }
 
 export default App;

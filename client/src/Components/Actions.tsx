@@ -80,6 +80,84 @@ export function LinkCommand(size: number) {
   }
 }
 
+export function OrderdListCommand() {
+  if (selectedText) {
+    const range = selectedText.getRangeAt(0);
+    const el = document.createElement("ol") as HTMLElement;
+    const li = document.createElement("li") as HTMLElement;
+    el.appendChild(li);
+    li.appendChild(range.extractContents());
+    el.style.listStyleType = "decimal";
+    el.style.listStylePosition = "inside";
+    if ((el.innerHTML.toString().length as number) != 0) {
+      range.insertNode(el);
+    }
+  }
+}
+
+export function UnOrderdListCommand() {
+  if (selectedText) {
+    const range = selectedText.getRangeAt(0);
+    const el = document.createElement("ol") as HTMLElement;
+    const li = document.createElement("li") as HTMLElement;
+    el.appendChild(li);
+    li.appendChild(range.extractContents());
+    el.style.listStyleType = "square";
+    el.style.listStylePosition = "inside";
+    if ((el.innerHTML.toString().length as number) != 0) {
+      range.insertNode(el);
+    }
+  }
+}
+
+export function RightAlignCommand() {
+  if (selectedText) {
+    const el = document.createElement("div") as HTMLElement;
+    const range = selectedText.getRangeAt(0);
+    el.style.textAlign = "right";
+    el.appendChild(range.extractContents());
+    if ((el.innerHTML.toString().length as number) != 0) {
+      range.insertNode(el);
+    }
+  }
+}
+
+export function CenterAlignCommand() {
+  if (selectedText) {
+    const el = document.createElement("div") as HTMLElement;
+    const range = selectedText.getRangeAt(0);
+    el.style.textAlign = "center";
+    el.appendChild(range.extractContents());
+    if ((el.innerHTML.toString().length as number) != 0) {
+      range.insertNode(el);
+    }
+  }
+}
+
+export function LeftAlignCommand() {
+  if (selectedText) {
+    const el = document.createElement("div") as HTMLElement;
+    const range = selectedText.getRangeAt(0);
+    el.style.textAlign = "left";
+    el.appendChild(range.extractContents());
+    if ((el.innerHTML.toString().length as number) != 0) {
+      range.insertNode(el);
+    }
+  }
+}
+
+export function JustifyAlignCommand() {
+  if (selectedText) {
+    const el = document.createElement("div") as HTMLElement;
+    const range = selectedText.getRangeAt(0);
+    el.style.textAlign = "justify";
+    el.appendChild(range.extractContents());
+    if ((el.innerHTML.toString().length as number) != 0) {
+      range.insertNode(el);
+    }
+  }
+}
+
 export function NewPage(id: number): HTMLElement {
   let mainDiv = document.createElement("div") as HTMLElement;
   mainDiv.id = `page-${id}`;

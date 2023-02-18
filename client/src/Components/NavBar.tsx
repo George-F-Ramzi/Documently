@@ -17,14 +17,21 @@ import {
 } from "react-icons/ri";
 import {
   boldCommand,
+  CenterAlignCommand,
   ItalicCommand,
+  JustifyAlignCommand,
+  LeftAlignCommand,
+  OrderdListCommand,
+  RightAlignCommand,
   SizeCommand,
   UnderlineCommand,
+  UnOrderdListCommand,
 } from "./Actions";
 
 function NavBar() {
   const [font, setFont] = useState<string>("Roboto");
   const [size, setSize] = useState<number>(12);
+  const [sizeTiltes, setSizeTiltes] = useState<number>(11);
 
   return (
     <div className="h-48 bg-white px-8 pt-8 w-full shadow-md z-10 p-10	">
@@ -58,6 +65,42 @@ function NavBar() {
             className="absolute right-2 top-1 -z-10"
           />
         </div>
+        <div className="h-[48px] w-[180px] border border-black relative ml-[24px] ">
+          <select
+            onChange={(e) => {
+              setSizeTiltes(Number(e.target.value));
+              SizeCommand(Number(e.target.value));
+            }}
+            className="opacity-0 h-full w-full z-20"
+            defaultValue={sizeTiltes}
+          >
+            <option value="11">Normal Text</option>
+            <option value="26">Title</option>
+            <option value="15">Subtitle</option>
+            <option value="20">Heading 1</option>
+            <option value="16">Heading 2</option>
+            <option value="14">Heading 3</option>
+          </select>
+          <p className="absolute left-3 top-3  -z-10">
+            {sizeTiltes == 11
+              ? "Normal Text"
+              : sizeTiltes == 26
+              ? "Title"
+              : sizeTiltes == 15
+              ? "Subtitle"
+              : sizeTiltes == 20
+              ? "Heading 1"
+              : sizeTiltes == 16
+              ? "Heading 2"
+              : sizeTiltes == 14
+              ? "Heading 3"
+              : ""}
+          </p>
+          <RiArrowDropDownFill
+            size={"40px"}
+            className="absolute right-2 top-1 -z-10"
+          />
+        </div>
         <div className="h-[48px] w-[180px] border border-black relative ml-[24px]">
           <select
             onChange={(e) => {
@@ -65,7 +108,7 @@ function NavBar() {
               SizeCommand(Number(e.target.value));
             }}
             className="opacity-0 h-full w-full z-20"
-            defaultValue={"8"}
+            defaultValue={size}
           >
             <option value="8">8</option>
             <option value="9">9</option>
@@ -118,14 +161,50 @@ function NavBar() {
               ItalicCommand();
             }}
           />
-          <RiListCheck size={"24px"} className="ml-[24px] cursor-pointer" />
-          <RiListOrdered size={"24px"} className="ml-[24px] cursor-pointer" />
+          <RiListCheck
+            onMouseDown={() => {
+              UnOrderdListCommand();
+            }}
+            size={"24px"}
+            className="ml-[24px] cursor-pointer"
+          />
+          <RiListOrdered
+            onMouseDown={() => {
+              OrderdListCommand();
+            }}
+            size={"24px"}
+            className="ml-[24px] cursor-pointer"
+          />
           <RiSubtractLine size={"24px"} className="ml-[24px] cursor-pointer" />
           <RiTable2 size={"24px"} className="ml-[24px] cursor-pointer" />
-          <RiAlignLeft size={"24px"} className="ml-[24px] cursor-pointer" />
-          <RiAlignCenter size={"24px"} className="ml-[24px] cursor-pointer" />
-          <RiAlignRight size={"24px"} className="ml-[24px] cursor-pointer" />
-          <RiAlignJustify size={"24px"} className="ml-[24px] cursor-pointer" />
+          <RiAlignLeft
+            onMouseDown={() => {
+              LeftAlignCommand();
+            }}
+            size={"24px"}
+            className="ml-[24px] cursor-pointer"
+          />
+          <RiAlignCenter
+            onMouseDown={() => {
+              CenterAlignCommand();
+            }}
+            size={"24px"}
+            className="ml-[24px] cursor-pointer"
+          />
+          <RiAlignRight
+            onMouseDown={() => {
+              RightAlignCommand();
+            }}
+            size={"24px"}
+            className="ml-[24px] cursor-pointer"
+          />
+          <RiAlignJustify
+            onMouseDown={() => {
+              JustifyAlignCommand();
+            }}
+            size={"24px"}
+            className="ml-[24px] cursor-pointer"
+          />
         </div>
       </div>
     </div>
