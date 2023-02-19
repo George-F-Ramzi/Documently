@@ -11,7 +11,6 @@ function Project() {
   const [scale, setScale] = useState<string>("scale-100");
   const [picker, setPicker] = useState<boolean>(false);
   const [selectedText, setSelectedText] = useState<object>();
-  const [scaleMargin, setScaleMargin] = useState<string>("mt-[44px]");
 
   useEffect(() => {
     document.getElementById(`content-1`)!.focus();
@@ -20,36 +19,6 @@ function Project() {
   useEffect(() => {
     selectObj = selectedText!;
   }, [selectedText]);
-
-  useEffect(() => {
-    let value: string = scale.slice(6);
-    let childern: number = document.getElementById("content-area")
-      ?.childElementCount as number;
-
-    if (value === "100") {
-      setScaleMargin("mt-[44px]");
-    } else if (value === "125") {
-      if (childern > 1) {
-        setScaleMargin("mt-[300px]");
-      } else setScaleMargin("mt-[170px]");
-    } else if (value === "150") {
-      if (childern > 1) {
-        setScaleMargin("mt-[600px]");
-      } else setScaleMargin("mt-[300px]");
-    } else if (value === "90") {
-      if (childern > 1) {
-        setScaleMargin("mt-[-75px]");
-      } else setScaleMargin("mt-[-20px]");
-    } else if (value === "75") {
-      if (childern > 1) {
-        setScaleMargin("mt-[-240px]");
-      } else setScaleMargin("mt-[-100px]");
-    } else {
-      if (childern > 1) {
-        setScaleMargin("mt-[-500px]");
-      } else setScaleMargin("mt-[-240px]");
-    }
-  }, [scale]);
 
   interface So {
     type?: string;
@@ -85,7 +54,7 @@ function Project() {
   return (
     <div className="h-screen flex flex-col relative">
       <NavBar />
-      <div className="grow overflow-y-scroll bg-slate-200 w-full flex-col pb-[600px]">
+      <div className="grow overflow-y-scroll bg-slate-200 w-full flex-col ">
         <div
           onMouseUp={() => SelectedTextObserver()}
           onInput={(e) => {
@@ -97,7 +66,7 @@ function Project() {
             }
           }}
           id="content-area"
-          className={`${scaleMargin} ${scale}  `}
+          className={`mt-[40px] mb-[40px] ${scale}  `}
         >
           <div
             id="page-1"
