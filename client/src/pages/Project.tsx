@@ -23,16 +23,27 @@ function Project() {
 
   useEffect(() => {
     let value: string = scale.slice(6);
+    let childern: number = document.getElementById("content-area")
+      ?.childElementCount as number;
+
     if (value === "100") {
       setScaleMargin("mt-[44px]");
     } else if (value === "125") {
-      setScaleMargin("mt-[170px]");
+      if (childern > 1) {
+        setScaleMargin("mt-[300px]");
+      } else setScaleMargin("mt-[170px]");
     } else if (value === "150") {
-      setScaleMargin("mt-[300px]");
+      if (childern > 1) {
+        setScaleMargin("mt-[580px]");
+      } else setScaleMargin("mt-[300px]");
     } else if (value === "90") {
-      setScaleMargin("mt-[-20px]");
+      if (childern > 1) {
+        setScaleMargin("mt-[-75px]");
+      } else setScaleMargin("mt-[-20px]");
     } else if (value === "75") {
-      setScaleMargin("mt-[-100px]");
+      if (childern > 1) {
+        setScaleMargin("mt-[-240px]");
+      } else setScaleMargin("mt-[-100px]");
     }
   }, [scale]);
 
@@ -70,7 +81,7 @@ function Project() {
   return (
     <div className="h-screen flex flex-col relative">
       <NavBar />
-      <div className="grow overflow-y-scroll bg-slate-200 w-full flex-col">
+      <div className="grow overflow-y-scroll bg-slate-200 w-full flex-col pb-[600px]">
         <div
           onMouseUp={() => SelectedTextObserver()}
           onInput={(e) => {
@@ -82,7 +93,7 @@ function Project() {
             }
           }}
           id="content-area"
-          className={`${scaleMargin} ${scale} `}
+          className={`${scaleMargin} ${scale}  `}
         >
           <div
             id="page-1"
