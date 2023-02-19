@@ -34,7 +34,7 @@ function Project() {
       } else setScaleMargin("mt-[170px]");
     } else if (value === "150") {
       if (childern > 1) {
-        setScaleMargin("mt-[580px]");
+        setScaleMargin("mt-[600px]");
       } else setScaleMargin("mt-[300px]");
     } else if (value === "90") {
       if (childern > 1) {
@@ -44,6 +44,10 @@ function Project() {
       if (childern > 1) {
         setScaleMargin("mt-[-240px]");
       } else setScaleMargin("mt-[-100px]");
+    } else {
+      if (childern > 1) {
+        setScaleMargin("mt-[-500px]");
+      } else setScaleMargin("mt-[-240px]");
     }
   }, [scale]);
 
@@ -112,9 +116,10 @@ function Project() {
           onChange={(e) => {
             setScale(e.target.value);
           }}
-          className="opacity-0 h-full w-full z-20"
+          className="opacity-0 h-full w-full z-20 "
           defaultValue={scale}
         >
+          <option value="scale-50">50%</option>
           <option value="scale-75">75%</option>
           <option value="scale-90">90%</option>
           <option value="scale-100">100%</option>
