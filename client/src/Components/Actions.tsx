@@ -1,9 +1,9 @@
-import { selectObj as selectedText } from "../pages/Project";
+import { selectObj } from "../pages/Project";
 
 export function boldCommand() {
-  if (selectedText) {
+  if (selectObj) {
     const el = document.createElement("strong") as HTMLElement;
-    const range = selectedText.getRangeAt(0);
+    const range = selectObj.getRangeAt(0);
     el.appendChild(range.extractContents());
     if ((el.innerHTML.toString().length as number) != 0) {
       range.insertNode(el);
@@ -12,9 +12,9 @@ export function boldCommand() {
 }
 
 export function ItalicCommand() {
-  if (selectedText) {
+  if (selectObj) {
     const el = document.createElement("em") as HTMLElement;
-    const range = selectedText.getRangeAt(0);
+    const range = selectObj.getRangeAt(0);
     el.appendChild(range.extractContents());
     if ((el.innerHTML.toString().length as number) != 0) {
       range.insertNode(el);
@@ -23,9 +23,9 @@ export function ItalicCommand() {
 }
 
 export function UnderlineCommand() {
-  if (selectedText) {
+  if (selectObj) {
     const el = document.createElement("u") as HTMLElement;
-    const range = selectedText.getRangeAt(0);
+    const range = selectObj.getRangeAt(0);
     el.appendChild(range.extractContents());
     if ((el.innerHTML.toString().length as number) != 0) {
       range.insertNode(el);
@@ -34,9 +34,9 @@ export function UnderlineCommand() {
 }
 
 export function ColorCommand(color: string) {
-  if (selectedText) {
+  if (selectObj) {
     const el = document.createElement("span") as HTMLElement;
-    const range = selectedText.getRangeAt(0);
+    const range = selectObj.getRangeAt(0);
     el.style.color = color;
     el.appendChild(range.extractContents());
     let childs = el.getElementsByTagName(
@@ -52,9 +52,9 @@ export function ColorCommand(color: string) {
 }
 
 export function SizeCommand(size: number) {
-  if (selectedText) {
+  if (selectObj) {
     const el = document.createElement("span") as HTMLElement;
-    const range = selectedText.getRangeAt(0);
+    const range = selectObj.getRangeAt(0);
     el.style.fontSize = `${size}px`;
     el.appendChild(range.extractContents());
     let childs = el.getElementsByTagName(
@@ -70,9 +70,9 @@ export function SizeCommand(size: number) {
 }
 
 export function LinkCommand() {
-  if (selectedText) {
+  if (selectObj) {
     const el = document.createElement("a") as HTMLElement;
-    const range = selectedText.getRangeAt(0);
+    const range = selectObj.getRangeAt(0);
     el.appendChild(range.extractContents());
     el.id = `${Math.random()}`;
     if ((el.innerHTML.toString().length as number) != 0) {
@@ -83,8 +83,8 @@ export function LinkCommand() {
 }
 
 export function OrderdListCommand() {
-  if (selectedText) {
-    const range = selectedText.getRangeAt(0);
+  if (selectObj) {
+    const range = selectObj.getRangeAt(0);
     const el = document.createElement("ol") as HTMLElement;
     const li = document.createElement("li") as HTMLElement;
     el.appendChild(li);
@@ -98,8 +98,8 @@ export function OrderdListCommand() {
 }
 
 export function UnOrderdListCommand() {
-  if (selectedText) {
-    const range = selectedText.getRangeAt(0);
+  if (selectObj) {
+    const range = selectObj.getRangeAt(0);
     const el = document.createElement("ol") as HTMLElement;
     const li = document.createElement("li") as HTMLElement;
     el.appendChild(li);
@@ -113,9 +113,9 @@ export function UnOrderdListCommand() {
 }
 
 export function RightAlignCommand() {
-  if (selectedText) {
+  if (selectObj) {
     const el = document.createElement("div") as HTMLElement;
-    const range = selectedText.getRangeAt(0);
+    const range = selectObj.getRangeAt(0);
     el.style.textAlign = "right";
     el.appendChild(range.extractContents());
     if ((el.innerHTML.toString().length as number) != 0) {
@@ -125,9 +125,9 @@ export function RightAlignCommand() {
 }
 
 export function CenterAlignCommand() {
-  if (selectedText) {
+  if (selectObj) {
     const el = document.createElement("div") as HTMLElement;
-    const range = selectedText.getRangeAt(0);
+    const range = selectObj.getRangeAt(0);
     el.style.textAlign = "center";
     el.appendChild(range.extractContents());
     if ((el.innerHTML.toString().length as number) != 0) {
@@ -137,24 +137,14 @@ export function CenterAlignCommand() {
 }
 
 export function LeftAlignCommand() {
-  if (selectedText) {
+  if (selectObj) {
     const el = document.createElement("div") as HTMLElement;
-    const range = selectedText.getRangeAt(0);
+    const range = selectObj.getRangeAt(0);
     el.style.textAlign = "left";
     el.appendChild(range.extractContents());
     if ((el.innerHTML.toString().length as number) != 0) {
       range.insertNode(el);
     }
-  }
-}
-
-export function LineSeparatorCommand() {
-  if (window.getSelection) {
-    const el = document.createElement("hr") as HTMLElement;
-    const sel = window.getSelection();
-    const range = sel?.getRangeAt(0);
-    el.style.border = "0.5px solid black";
-    range!.insertNode(el);
   }
 }
 

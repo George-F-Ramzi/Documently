@@ -11,7 +11,6 @@ import {
   RiImageLine,
   RiListCheck,
   RiListOrdered,
-  RiSubtractLine,
   RiTable2,
 } from "react-icons/ri";
 import {
@@ -19,7 +18,6 @@ import {
   CenterAlignCommand,
   ItalicCommand,
   LeftAlignCommand,
-  LineSeparatorCommand,
   LinkCommand,
   OrderdListCommand,
   RightAlignCommand,
@@ -178,13 +176,6 @@ function NavBar() {
             <RiListOrdered
               onMouseDown={() => {
                 OrderdListCommand();
-              }}
-              size={"24px"}
-              className="ml-[24px] cursor-pointer"
-            />
-            <RiSubtractLine
-              onMouseDown={() => {
-                LineSeparatorCommand();
               }}
               size={"24px"}
               className="ml-[24px] cursor-pointer"

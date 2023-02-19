@@ -11,6 +11,7 @@ function Project() {
   const [scale, setScale] = useState<string>("scale-100");
   const [picker, setPicker] = useState<boolean>(false);
   const [selectedText, setSelectedText] = useState<object>();
+  const [scaleMargin, setScaleMargin] = useState<string>("mt-[44px]");
 
   useEffect(() => {
     document.getElementById(`content-1`)!.focus();
@@ -19,6 +20,21 @@ function Project() {
   useEffect(() => {
     selectObj = selectedText!;
   }, [selectedText]);
+
+  useEffect(() => {
+    let value: string = scale.slice(6);
+    if (value === "100") {
+      setScaleMargin("mt-[44px]");
+    } else if (value === "125") {
+      setScaleMargin("mt-[170px]");
+    } else if (value === "150") {
+      setScaleMargin("mt-[300px]");
+    } else if (value === "90") {
+      setScaleMargin("mt-[-20px]");
+    } else if (value === "75") {
+      setScaleMargin("mt-[-100px]");
+    }
+  }, [scale]);
 
   interface So {
     type?: string;
@@ -60,8 +76,13 @@ function Project() {
           onInput={(e) => {
             Overflow(e);
           }}
+          onKeyUp={(e) => {
+            if (e.ctrlKey && e.key === "a") {
+              SelectedTextObserver();
+            }
+          }}
           id="content-area"
-          className={`mt-10 ${scale} `}
+          className={`${scaleMargin} ${scale} `}
         >
           <div
             id="page-1"
