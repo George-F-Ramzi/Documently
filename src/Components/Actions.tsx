@@ -1,4 +1,7 @@
 import { selectObj } from "../pages/Project";
+import * as pdfMake from "pdfmake/build/pdfmake";
+import * as pdfFonts from "pdfmake/build/vfs_fonts";
+import htmlToPdfmake from "html-to-pdfmake";
 
 export function boldCommand() {
   if (selectObj) {
@@ -152,11 +155,20 @@ export function NewPage(id: number): HTMLElement {
   let mainDiv = document.createElement("div") as HTMLElement;
   mainDiv.id = `page-${id}`;
   mainDiv.className =
-    "p-[1in] rounded-sm shadow-md	bg-white h-[11in] w-[8in] m-auto mb-10";
+    "py-[1in] rounded-sm shadow-md	bg-white h-[11in] w-[8in] m-auto mb-10";
   let contentDiv = document.createElement("div") as HTMLElement;
   contentDiv.className = "outline-none overflow-hidden";
   contentDiv.id = `content-${id}`;
   contentDiv.setAttribute("contentEditable", "true");
   mainDiv.appendChild(contentDiv);
   return mainDiv;
+}
+
+export function Print() {
+  let el = document.getElementById("content-area") as HTMLElement;
+  let val = htmlToPdfmake(el.innerHTML);
+  let content = { content: val };
+  pdfMake
+    .createPdf(content, undefined, undefined, pdfFonts.pdfMake.vfs)
+    .download();
 }

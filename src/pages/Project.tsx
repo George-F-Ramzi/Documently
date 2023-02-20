@@ -68,6 +68,7 @@ function Project() {
         page.blur();
         contentArea.appendChild(NewPage((pagesNumber = pagesNumber + 1)));
         document.getElementById(`content-${pagesNumber++}`)?.focus();
+        SetingPadding();
       }
     } else page.style.height = "auto";
   };
