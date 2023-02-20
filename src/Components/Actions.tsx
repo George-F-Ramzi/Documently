@@ -100,21 +100,6 @@ export function OrderdListCommand() {
   }
 }
 
-export function UnOrderdListCommand() {
-  if (selectObj) {
-    const range = selectObj.getRangeAt(0);
-    const el = document.createElement("ol") as HTMLElement;
-    const li = document.createElement("li") as HTMLElement;
-    el.appendChild(li);
-    li.appendChild(range.extractContents());
-    el.style.listStyleType = "square";
-    el.style.listStylePosition = "inside";
-    if ((el.innerHTML.toString().length as number) != 0) {
-      range.insertNode(el);
-    }
-  }
-}
-
 export function RightAlignCommand() {
   if (selectObj) {
     const el = document.createElement("div") as HTMLElement;

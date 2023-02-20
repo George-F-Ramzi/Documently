@@ -8,7 +8,6 @@ import {
   RiArrowDropDownFill,
   RiUnderline,
   RiItalic,
-  RiListCheck,
   RiListOrdered,
   RiPrinterFill,
 } from "react-icons/ri";
@@ -23,7 +22,6 @@ import {
   RightAlignCommand,
   SizeCommand,
   UnderlineCommand,
-  UnOrderdListCommand,
 } from "./Actions";
 import LinkPopup from "./LinkPopup";
 
@@ -134,13 +132,6 @@ function NavBar() {
                 setLinkId(id);
                 setLinking(true);
               }}
-            />
-            <RiListCheck
-              onMouseDown={() => {
-                UnOrderdListCommand();
-              }}
-              size={"24px"}
-              className="ml-[24px] cursor-pointer"
             />
             <RiListOrdered
               onMouseDown={() => {
