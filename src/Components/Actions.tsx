@@ -16,7 +16,10 @@ export function SelectedTextObserver(): boolean {
   if (obj.toString().length > 0 && obj.type === "Range") {
     canEdit = true;
     return true;
-  } else return false;
+  } else {
+    canEdit = false;
+    return false;
+  }
 }
 
 export function boldCommand() {

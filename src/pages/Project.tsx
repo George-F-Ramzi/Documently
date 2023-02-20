@@ -40,7 +40,10 @@ function Project() {
 
   const Overflow = (e: FormEvent<HTMLDivElement>) => {
     let page = e.target as HTMLElement;
-    let parentElement = e.target.parentElement as HTMLElement;
+    let parentId: string = page.id.slice(8);
+    let parentElement = document.getElementById(
+      `page-${parentId}`
+    ) as HTMLElement;
     let contentArea = document.getElementById("content-area") as HTMLElement;
     let pagesNumber = contentArea?.childElementCount as number;
     let currentPageNumber: number = Number(parentElement.id.slice(5));
