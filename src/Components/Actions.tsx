@@ -1,5 +1,5 @@
 import * as pdfMake from "pdfmake/build/pdfmake";
-import * as pdfFonts from "pdfmake/build/vfs_fonts";
+import "pdfmake/build/vfs_fonts";
 import htmlToPdfmake from "html-to-pdfmake";
 
 interface So {
@@ -172,7 +172,5 @@ export function Print() {
   let el = document.getElementById("content-area") as HTMLElement;
   let val = htmlToPdfmake(el.innerHTML);
   let content = { content: val };
-  pdfMake
-    .createPdf(content, undefined, undefined, pdfFonts.pdfMake.vfs)
-    .download();
+  pdfMake.createPdf(content, undefined, undefined, pdfMake.vfs).download();
 }
