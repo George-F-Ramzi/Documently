@@ -11,7 +11,6 @@ import {
   RiImageLine,
   RiListCheck,
   RiListOrdered,
-  RiTable2,
 } from "react-icons/ri";
 import {
   boldCommand,
@@ -160,7 +159,7 @@ function NavBar() {
             <RiLinkM
               size={"24px"}
               className="ml-[24px] cursor-pointer"
-              onMouseDown={(e) => {
+              onMouseDown={() => {
                 let id: string = LinkCommand()!;
                 setLinkId(id);
                 setLinking(true);
@@ -180,7 +179,6 @@ function NavBar() {
               size={"24px"}
               className="ml-[24px] cursor-pointer"
             />
-            <RiTable2 size={"24px"} className="ml-[24px] cursor-pointer" />
             <RiAlignLeft
               onMouseDown={() => {
                 LeftAlignCommand();

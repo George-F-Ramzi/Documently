@@ -9,16 +9,37 @@ export let selectObj: object;
 
 function Project() {
   const [scale, setScale] = useState<string>("scale-100");
+  const [padding, setPadding] = useState<string>();
   const [picker, setPicker] = useState<boolean>(false);
   const [selectedText, setSelectedText] = useState<object>();
 
   useEffect(() => {
     document.getElementById(`content-1`)!.focus();
+    let pad = localStorage.getItem("padding");
+    if (pad !== "undefined") {
+      setPadding(pad!);
+    } else {
+      setPadding("50px");
+    }
+    SetingPadding();
   }, []);
 
   useEffect(() => {
     selectObj = selectedText!;
   }, [selectedText]);
+
+  useEffect(() => {
+    SetingPadding();
+  }, [padding]);
+
+  const SetingPadding = () => {
+    localStorage.setItem("padding", padding!);
+    let contentArea = document.getElementById("content-area");
+    contentArea?.childNodes.forEach((p) => {
+      let p2 = p as HTMLElement;
+      p2.style.paddingInline = padding!;
+    });
+  };
 
   interface So {
     type?: string;
@@ -66,11 +87,11 @@ function Project() {
             }
           }}
           id="content-area"
-          className={`mt-[40px] mb-[40px] ${scale}  `}
+          className={`mt-[40px] mb-[40px] ${scale}`}
         >
           <div
             id="page-1"
-            className="p-[1in] rounded-sm shadow-md	bg-white h-[11in] w-[8in] m-auto mb-10"
+            className="py-[1in] rounded-sm shadow-md	bg-white h-[11in] w-[8in] m-auto mb-10"
           >
             <div
               id="content-1"
@@ -96,6 +117,25 @@ function Project() {
           <option value="scale-150">150%</option>
         </select>
         <p className="absolute left-3 top-2 -z-10">{scale.slice(6)}</p>
+        <RiArrowDropDownFill
+          size={"40px"}
+          className="absolute right-2 top-[2px] -z-10"
+        />
+      </div>
+      <div className="shadow-lg fixed bottom-12 left-12 bg-white w-[140px] h-[40px] rounded">
+        <select
+          onChange={(e) => {
+            setPadding(e.target.value);
+          }}
+          className="opacity-0 h-full w-full z-20 "
+          defaultValue={scale}
+        >
+          <option value="50px">50px</option>
+          <option value="100px">100px</option>
+          <option value="150px">150px</option>
+          <option value="200px">200px</option>
+        </select>
+        <p className="absolute left-3 top-2 -z-10">{padding}</p>
         <RiArrowDropDownFill
           size={"40px"}
           className="absolute right-2 top-[2px] -z-10"
