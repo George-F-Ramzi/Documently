@@ -2,16 +2,17 @@ import { useEffect, FormEvent, useState } from "react";
 import { RiArrowDropDownFill } from "react-icons/ri";
 import NavBar from "../Components/NavBar";
 import { HexColorPicker } from "react-colorful";
-import { ColorCommand, NewPage } from "../Components/Actions";
+import {
+  ColorCommand,
+  NewPage,
+  SelectedTextObserver,
+} from "../Components/Actions";
 import detectElementOverflow from "detect-element-overflow";
-
-export let selectObj: object;
 
 function Project() {
   const [scale, setScale] = useState<string>("scale-100");
   const [padding, setPadding] = useState<string>();
   const [picker, setPicker] = useState<boolean>(false);
-  const [selectedText, setSelectedText] = useState<object>();
 
   useEffect(() => {
     document.getElementById(`content-1`)!.focus();
@@ -25,10 +26,6 @@ function Project() {
   }, []);
 
   useEffect(() => {
-    selectObj = selectedText!;
-  }, [selectedText]);
-
-  useEffect(() => {
     SetingPadding();
   }, [padding]);
 
@@ -39,20 +36,6 @@ function Project() {
       let p2 = p as HTMLElement;
       p2.style.paddingInline = padding!;
     });
-  };
-
-  interface So {
-    type?: string;
-    length?: number;
-  }
-
-  const SelectedTextObserver = () => {
-    let obj: So = window.getSelection() as object;
-
-    if (obj.toString().length > 0 && obj.type === "Range") {
-      setSelectedText(obj);
-      setPicker(true);
-    } else setPicker(false);
   };
 
   const Overflow = (e: FormEvent<HTMLDivElement>) => {
@@ -78,13 +61,13 @@ function Project() {
       <NavBar />
       <div className="grow overflow-y-scroll bg-slate-200 w-full flex-col ">
         <div
-          onMouseUp={() => SelectedTextObserver()}
+          onMouseUp={() => setPicker(SelectedTextObserver())}
           onInput={(e) => {
             Overflow(e);
           }}
           onKeyUp={(e) => {
             if (e.ctrlKey && e.key === "a") {
-              SelectedTextObserver();
+              setPicker(SelectedTextObserver());
             }
           }}
           id="content-area"

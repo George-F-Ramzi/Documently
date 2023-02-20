@@ -1,12 +1,28 @@
-import { selectObj } from "../pages/Project";
 import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from "pdfmake/build/vfs_fonts";
 import htmlToPdfmake from "html-to-pdfmake";
 
+interface So {
+  type?: string;
+  length?: number;
+  getRangeAt?: any;
+}
+
+let obj: So = window.getSelection() as object;
+
+let canEdit: boolean = false;
+
+export function SelectedTextObserver(): boolean {
+  if (obj.toString().length > 0 && obj.type === "Range") {
+    canEdit = true;
+    return true;
+  } else return false;
+}
+
 export function boldCommand() {
-  if (selectObj) {
+  if (canEdit) {
     const el = document.createElement("strong") as HTMLElement;
-    const range = selectObj.getRangeAt(0);
+    const range = obj?.getRangeAt(0);
     el.appendChild(range.extractContents());
     if ((el.innerHTML.toString().length as number) != 0) {
       range.insertNode(el);
@@ -15,9 +31,9 @@ export function boldCommand() {
 }
 
 export function ItalicCommand() {
-  if (selectObj) {
+  if (canEdit) {
     const el = document.createElement("em") as HTMLElement;
-    const range = selectObj.getRangeAt(0);
+    const range = obj.getRangeAt(0);
     el.appendChild(range.extractContents());
     if ((el.innerHTML.toString().length as number) != 0) {
       range.insertNode(el);
@@ -26,9 +42,9 @@ export function ItalicCommand() {
 }
 
 export function UnderlineCommand() {
-  if (selectObj) {
+  if (canEdit) {
     const el = document.createElement("u") as HTMLElement;
-    const range = selectObj.getRangeAt(0);
+    const range = obj.getRangeAt(0);
     el.appendChild(range.extractContents());
     if ((el.innerHTML.toString().length as number) != 0) {
       range.insertNode(el);
@@ -37,9 +53,9 @@ export function UnderlineCommand() {
 }
 
 export function ColorCommand(color: string) {
-  if (selectObj) {
+  if (canEdit) {
     const el = document.createElement("span") as HTMLElement;
-    const range = selectObj.getRangeAt(0);
+    const range = obj.getRangeAt(0);
     el.style.color = color;
     el.appendChild(range.extractContents());
     let childs = el.getElementsByTagName(
@@ -55,9 +71,9 @@ export function ColorCommand(color: string) {
 }
 
 export function SizeCommand(size: number) {
-  if (selectObj) {
+  if (canEdit) {
     const el = document.createElement("span") as HTMLElement;
-    const range = selectObj.getRangeAt(0);
+    const range = obj.getRangeAt(0);
     el.style.fontSize = `${size}px`;
     el.appendChild(range.extractContents());
     let childs = el.getElementsByTagName(
@@ -73,9 +89,9 @@ export function SizeCommand(size: number) {
 }
 
 export function LinkCommand() {
-  if (selectObj) {
+  if (canEdit) {
     const el = document.createElement("a") as HTMLElement;
-    const range = selectObj.getRangeAt(0);
+    const range = obj.getRangeAt(0);
     el.appendChild(range.extractContents());
     el.id = `${Math.random()}`;
     if ((el.innerHTML.toString().length as number) != 0) {
@@ -86,8 +102,8 @@ export function LinkCommand() {
 }
 
 export function OrderdListCommand() {
-  if (selectObj) {
-    const range = selectObj.getRangeAt(0);
+  if (canEdit) {
+    const range = obj.getRangeAt(0);
     const el = document.createElement("ol") as HTMLElement;
     const li = document.createElement("li") as HTMLElement;
     el.appendChild(li);
@@ -101,9 +117,9 @@ export function OrderdListCommand() {
 }
 
 export function RightAlignCommand() {
-  if (selectObj) {
+  if (canEdit) {
     const el = document.createElement("div") as HTMLElement;
-    const range = selectObj.getRangeAt(0);
+    const range = obj.getRangeAt(0);
     el.style.textAlign = "right";
     el.appendChild(range.extractContents());
     if ((el.innerHTML.toString().length as number) != 0) {
@@ -113,9 +129,9 @@ export function RightAlignCommand() {
 }
 
 export function CenterAlignCommand() {
-  if (selectObj) {
+  if (canEdit) {
     const el = document.createElement("div") as HTMLElement;
-    const range = selectObj.getRangeAt(0);
+    const range = obj.getRangeAt(0);
     el.style.textAlign = "center";
     el.appendChild(range.extractContents());
     if ((el.innerHTML.toString().length as number) != 0) {
@@ -125,9 +141,9 @@ export function CenterAlignCommand() {
 }
 
 export function LeftAlignCommand() {
-  if (selectObj) {
+  if (canEdit) {
     const el = document.createElement("div") as HTMLElement;
-    const range = selectObj.getRangeAt(0);
+    const range = obj.getRangeAt(0);
     el.style.textAlign = "left";
     el.appendChild(range.extractContents());
     if ((el.innerHTML.toString().length as number) != 0) {
